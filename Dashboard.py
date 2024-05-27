@@ -7,10 +7,11 @@ import numpy as np
 from extras import ancora, loadCss, padding
 from progress_circular_bar import circular_progress_bar
 from render_html import render_html
+from custom_table import custom_table
 import plotly.graph_objects as go
 import streamlit.components.v1 as components
 import matplotlib.pyplot as plt
-import squarify
+
 
 st.set_page_config(page_title="Dashboard Civeis",
 page_icon="🧊",
@@ -19,7 +20,7 @@ initial_sidebar_state="auto")
 
 loadCss()
 
-st.header("Dashboard Civeis")
+st.header("Dashboard Tivio")
 
 @st.cache_data(show_spinner="Carregando os dados...")
 def getDatabase():
@@ -240,7 +241,8 @@ with grid1.container():
 #     list_dict.append(dict(row))
 # st.json(list_dict)
 
-
+out = df.head(200).to_json(orient='records')
+custom_table(out, "C-23")
 
 
 
